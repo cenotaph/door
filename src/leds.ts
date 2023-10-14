@@ -1,5 +1,6 @@
 import rpio from 'rpio'
 const ledConfig = require('./config.json')
+let blinkInterval
 
 export const leds = {}
 ledConfig['leds'].forEach((led) => {
@@ -30,15 +31,29 @@ export const status = (colour?: string) => {
   }
 }
 
-export const blink = (colour: string, duration: number) => {
-  for (var i = 0; i < duration - 1; i++) {
-    /* On for 1 second */
-    rpio.write(leds[colour], rpio.HIGH)
-    rpio.sleep(1)
+export const ledOn = (colour: string) => {
+  console.log('turning on ', colour)
+  rpio.write(leds[colour], rpio.LOW)
+}
 
-    /* Off for half a second (500ms) */
-    rpio.write(leds[colour], rpio.LOW)
-    rpio.msleep(500)
-  }
+const ledOff = (colour: string) => {
+  console.log('turning off ', colour)
+  rpio.write(leds[colour], rpio.HIGH)
+}
+export const blink = (colour: string, duration: number) => {
+  console.log(colour)
+
+  let counter = 0
+  blinkInterval = setInterval(function () {
+    if (counter >= duration) clearInterval(blinkInterval)
+    rpio.open(leds[colour], rpio.OUTPUT)
+    rpio.write(leds[colour], counter++ % 2 ? rpio.HIGH : rpio.LOW)
+  }, 1000)
+
   reset(colour)
+}
+
+export const stopBlink = () => {
+  clearInterval(blinkInterval)
+  reset()
 }

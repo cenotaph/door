@@ -1,4 +1,5 @@
 {
+  "button": 33,
   "leds": [
     { "color": "green", "pin": 13 },
     {
