@@ -1,0 +1,13 @@
+{
+  "leds": [
+    { "color": "green", "pin": 13 },
+    {
+      "color": "red",
+      "pin": 15
+    },
+    {
+      "color": "blue",
+      "pin": 16
+    }
+  ]
+}
