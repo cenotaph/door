@@ -11,13 +11,18 @@ const pollcb = async (pin: number) => {
 
   console.log('Button pressed on pin P%d', pin)
   rpio.poll(pin, null)
-  nfc.stop()
+  await nfc.stop()
 
   const newTag = await nfc.readNewTag()
-
+  if (newTag) {
+  }
+  console.log('   ^^^ SQL STUFF HERE')
   //  registerNewTag(newTag.uid)
-  nfc.reinitialize()
-  if (!newTag) rpio.poll(config.button, pollcb, rpio.POLL_LOW)
+  setTimeout(() => {
+    nfc.reinitialize()
+  }, 1500)
+  // if (!newTag)
+  rpio.poll(config.button, pollcb, rpio.POLL_LOW)
 }
 
 export const pollButton = () => {

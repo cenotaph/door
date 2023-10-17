@@ -31,9 +31,13 @@ export const status = (colour?: string) => {
   }
 }
 
-export const ledOn = (colour: string) => {
+export const ledOn = (colour: string, duration: number) => {
   console.log('turning on ', colour)
+  rpio.open(leds[colour], rpio.OUTPUT)
   rpio.write(leds[colour], rpio.LOW)
+  setTimeout(() => {
+    reset()
+  }, duration)
 }
 
 const ledOff = (colour: string) => {
@@ -41,14 +45,12 @@ const ledOff = (colour: string) => {
   rpio.write(leds[colour], rpio.HIGH)
 }
 export const blink = (colour: string, duration: number) => {
-  console.log(colour)
-
   let counter = 0
   blinkInterval = setInterval(function () {
-    if (counter >= duration) clearInterval(blinkInterval)
+    if (counter >= duration * 4) clearInterval(blinkInterval)
     rpio.open(leds[colour], rpio.OUTPUT)
     rpio.write(leds[colour], counter++ % 2 ? rpio.HIGH : rpio.LOW)
-  }, 1000)
+  }, 250)
 
   reset(colour)
 }
