@@ -9,11 +9,11 @@ ledConfig['leds'].forEach((led) => {
 
 export const reset = (colour?: string) => {
   if (colour) {
-    rpio.open(leds[colour], rpio.INPUT)
+    rpio.open(leds[colour], rpio.OUTPUT)
     rpio.write(leds[colour], rpio.HIGH)
   } else {
     ledConfig['leds'].forEach((led) => {
-      rpio.open(led.pin, rpio.INPUT)
+      rpio.open(led.pin, rpio.OUTPUT)
       rpio.write(led.pin, rpio.HIGH)
     })
   }
@@ -36,7 +36,7 @@ export const ledOn = (colour: string, duration: number) => {
   rpio.open(leds[colour], rpio.OUTPUT)
   rpio.write(leds[colour], rpio.LOW)
   setTimeout(() => {
-    reset()
+    reset(colour)
   }, duration)
 }
 

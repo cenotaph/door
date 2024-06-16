@@ -1,14 +1,15 @@
 {
-  "button": 33,
+  "relay": 18,
+  "button": 35,
   "leds": [
-    { "color": "green", "pin": 13 },
+    { "color": "red", "pin": 15 },
     {
-      "color": "red",
-      "pin": 15
+      "color": "green",
+      "pin": 13
     },
     {
       "color": "blue",
-      "pin": 40
+      "pin": 11
     }
   ]
 }

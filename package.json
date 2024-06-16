@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@prisma/client": "^5.4.2",
+    "dotenv": "^16.3.1",
     "i2c": "^0.2.5",
     "onoff": "^6.0.3",
+    "pg": "^8.11.3",
     "pn532": "^1.0.0",
     "rpio": "^2.4.2",
     "serialport": "^12.0.0"

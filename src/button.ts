@@ -16,8 +16,7 @@ const pollcb = async (pin: number) => {
   const newTag = await nfc.readNewTag()
   if (newTag) {
   }
-  console.log('   ^^^ SQL STUFF HERE')
-  //  registerNewTag(newTag.uid)
+
   setTimeout(() => {
     nfc.reinitialize()
   }, 1500)

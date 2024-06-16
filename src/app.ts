@@ -1,10 +1,12 @@
+import 'dotenv/config'
 import * as led from './leds'
 import * as nfc from './nfc'
 import rpio from 'rpio'
 import { pollButton } from './button'
+import * as relay from './relay'
 
-const config = require('./config.json')
-
+relay.reset()
+relay.status()
 led.reset()
 led.status()
 
